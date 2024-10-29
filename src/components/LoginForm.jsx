@@ -1,7 +1,15 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = ({ rememberToken }) => {
   const navigate = useNavigate();
+
+  const[formState, setFormState] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormState(prev => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,7 +66,8 @@ const LoginForm = ({ rememberToken }) => {
                 placeholder="email"
                 className="input input-bordered"
                 required
-              />
+                onChange={handleChange}
+                />
             </div>
             <div className="form-control">
               <label className="label">
@@ -70,7 +79,8 @@ const LoginForm = ({ rememberToken }) => {
                 placeholder="password"
                 className="input input-bordered"
                 required
-              />
+                onChange={handleChange}
+                />
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
                   Forgot password?

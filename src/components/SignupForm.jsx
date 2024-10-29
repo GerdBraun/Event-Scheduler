@@ -1,11 +1,20 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
   const navigate = useNavigate();
 
+  const[formState, setFormState] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormState(prev => ({ ...prev, [name]: value }));
+  };
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("handleSubmit called");
+    console.log("formState=",formState);
 
     fetch("http://localhost:3001/api/users", {
       method: "POST",
@@ -15,15 +24,14 @@ const SignupForm = () => {
       },
       // body: '{\n  "email": "user@example.com",\n  "password": "password123"\n}',
       body: JSON.stringify({
-        email: e.target.email.value,
-        password: e.target.password.value,
+        email: formState.email,
+        password: formState.password,
       }),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
 
-        // TODO: error handling
         if (data.error) {
           alert(data.error);
           return;
@@ -56,6 +64,7 @@ const SignupForm = () => {
                 placeholder="email"
                 className="input input-bordered"
                 required
+                onChange={handleChange}
               />
             </div>
             <div className="form-control">
@@ -68,7 +77,8 @@ const SignupForm = () => {
                 placeholder="password"
                 className="input input-bordered"
                 required
-              />
+                onChange={handleChange}
+                />
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary">Sign up</button>
