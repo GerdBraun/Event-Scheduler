@@ -1,13 +1,20 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = ({ rememberToken }) => {
   const navigate = useNavigate();
 
+  const[formState, setFormState] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormState(prev => ({ ...prev, [name]: value }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("handleSubmit called");
 
-    // TODO: really fetch the data on submit
     fetch("http://localhost:3001/api/auth/login", {
       method: "POST",
       headers: {
@@ -16,31 +23,25 @@ const LoginForm = ({ rememberToken }) => {
       },
       // body: '{\n  "email": "user@example.com",\n  "password": "password123"\n}',
       body: JSON.stringify({
-        email: e.target.email.value,
-        password: e.target.password.value,
+        email: formState.email,
+        password: formState.password,
       }),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
 
-// TODO: error handling
-if(data.error) {
-  alert(data.error);
-  return
-}
+        // TODO: error handling
+        if (data.error) {
+          alert(data.error);
+          return;
+        }
 
         rememberToken(data.token);
         navigate("/");
         //setEvent(data)
       })
       .catch((error) => console.error("Error fetching event details:", error));
-
-    /* just for testing */
-    // TODO: remove this for production
-    // rememberToken(
-    //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzMwMTk5NTIxLCJleHAiOjE3MzM3OTk1MjF9.feS_3p40GSX0l4Un3_YpWtnyCYni0hyDBz2cZhOUz0M"
-    // );
   };
   return (
     <div className="hero bg-base-200 min-h-screen">
@@ -65,7 +66,8 @@ if(data.error) {
                 placeholder="email"
                 className="input input-bordered"
                 required
-              />
+                onChange={handleChange}
+                />
             </div>
             <div className="form-control">
               <label className="label">
@@ -77,7 +79,8 @@ if(data.error) {
                 placeholder="password"
                 className="input input-bordered"
                 required
-              />
+                onChange={handleChange}
+                />
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
                   Forgot password?
