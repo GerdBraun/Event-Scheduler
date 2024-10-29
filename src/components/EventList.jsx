@@ -33,7 +33,7 @@ const EventList = () => {
   }
 
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="grid grid-cols-4 gap-4 mx-4">
       {events.map(event => (
         <Card
           key={event.id}

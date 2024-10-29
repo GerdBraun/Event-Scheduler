@@ -15,12 +15,17 @@ const EventSingle = () => {
 
   return (
     <div className="p-6 bg-base-200 min-h-screen">
-    <div className="card bg-primary text-primary-content w-full max-w-xl mx-auto shadow-xl">
+    <div className="card bg-gray-300 text-black w-full max-w-xl mx-auto shadow-xl">
       <div className="card-body">
         <h2 className="card-title">{event.title}</h2>
         <p>{event.description}</p>
         <p className="text-sm">Date: {new Date(event.date).toLocaleDateString()}</p>
         <p className="text-sm">Location: {event.location}</p>
+        <p className="text-sm">Latitude: {event.latitude}</p>
+        <p className="text-sm">Longitude: {event.longitude}</p>
+        <p className="text-sm">Organizer ID: {event.organizerId}</p>
+        <p className="text-sm">Created At: {new Date(event.createdAt).toLocaleDateString()}</p>
+        <p className="text-sm">Updated At: {new Date(event.updatedAt).toLocaleDateString()}</p>
       </div>
     </div>
   </div>
