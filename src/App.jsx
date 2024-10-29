@@ -67,7 +67,7 @@ function App() {
         </Route>
         {/* must be protected */}
         <Route path="/events/edit/:id" element={<ProtectedLayout token={token} />}>
-          <Route index element={<EventEditForm />} />
+          <Route index element={<EventEditForm token={token} />} />
         </Route>
         {/* should be hidden when user is logged in */}
         <Route

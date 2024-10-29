@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-const EventEditForm = () => {
+const EventEditForm = ({token}) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [event, setEvent] = useState({
@@ -29,7 +29,9 @@ const EventEditForm = () => {
     fetch(`http://localhost:3001/api/events/${id}`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        accept: "application/json",
+        Authorization: "Bearer "+token,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(event)
     })
