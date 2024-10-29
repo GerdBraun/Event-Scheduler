@@ -4,17 +4,19 @@ import { useNavigate } from "react-router-dom";
 const SignupForm = () => {
   const navigate = useNavigate();
 
-  const[formState, setFormState] = useState(false);
+  const [formState, setFormState] = useState({
+    email: "",
+    password: "",
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormState(prev => ({ ...prev, [name]: value }));
+    setFormState((prev) => ({ ...prev, [name]: value }));
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("formState=",formState);
+    console.log("formState=", formState);
 
     fetch("http://localhost:3001/api/users", {
       method: "POST",
@@ -41,7 +43,7 @@ const SignupForm = () => {
       })
       .catch((error) => console.error("Error fetching event details:", error));
   };
- return (
+  return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
@@ -65,6 +67,7 @@ const SignupForm = () => {
                 className="input input-bordered"
                 required
                 onChange={handleChange}
+                value={formState.email}
               />
             </div>
             <div className="form-control">
@@ -78,7 +81,8 @@ const SignupForm = () => {
                 className="input input-bordered"
                 required
                 onChange={handleChange}
-                />
+                value={formState.password}
+              />
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary">Sign up</button>
