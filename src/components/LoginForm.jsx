@@ -7,7 +7,6 @@ const LoginForm = ({ rememberToken }) => {
     e.preventDefault();
     console.log("handleSubmit called");
 
-    // TODO: really fetch the data on submit
     fetch("http://localhost:3001/api/auth/login", {
       method: "POST",
       headers: {
@@ -24,23 +23,17 @@ const LoginForm = ({ rememberToken }) => {
       .then((data) => {
         console.log(data);
 
-// TODO: error handling
-if(data.error) {
-  alert(data.error);
-  return
-}
+        // TODO: error handling
+        if (data.error) {
+          alert(data.error);
+          return;
+        }
 
         rememberToken(data.token);
         navigate("/");
         //setEvent(data)
       })
       .catch((error) => console.error("Error fetching event details:", error));
-
-    /* just for testing */
-    // TODO: remove this for production
-    // rememberToken(
-    //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzMwMTk5NTIxLCJleHAiOjE3MzM3OTk1MjF9.feS_3p40GSX0l4Un3_YpWtnyCYni0hyDBz2cZhOUz0M"
-    // );
   };
   return (
     <div className="hero bg-base-200 min-h-screen">
