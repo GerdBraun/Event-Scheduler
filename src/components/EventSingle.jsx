@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams , useNavigate } from 'react-router-dom';
 const EventSingle = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
     fetch(`http://localhost:3001/api/events/${id}`)
       .then(response => response.json())
@@ -26,6 +26,8 @@ const EventSingle = () => {
         <p className="text-sm">Organizer ID: {event.organizerId}</p>
         <p className="text-sm">Created At: {new Date(event.createdAt).toLocaleDateString()}</p>
         <p className="text-sm">Updated At: {new Date(event.updatedAt).toLocaleDateString()}</p>
+        <button className="btn mt-4"
+          onClick={() => navigate(`/events/edit/${id}`)}>Edit</button>
       </div>
     </div>
   </div>

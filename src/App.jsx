@@ -11,6 +11,7 @@ import EventSingle from "./components/EventSingle";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 import EventAddForm from "./components/EventAddForm";
+import EventEditForm from "./components/EventEditForm";
 
 function App() {
   const router = createBrowserRouter(
@@ -28,7 +29,7 @@ function App() {
         <Route path="/events" element={<EventList />} />
         <Route path="/events/:id" element={<EventSingle />} />
         <Route path="/events/add" element={<EventAddForm />} /> {/* must be protected */}
-        <Route path="/events/edit/:id" element={<EventAddForm />} /> {/* must be protected */}
+        <Route path="/events/edit/:id" element={<EventEditForm />} /> {/* must be protected */}
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignupForm />} /> {/* should be hidden when user is logged in */}
       </Route>
