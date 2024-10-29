@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Card from './Card';
+import { useNavigate } from 'react-router-dom';
 
 const EventList = () => {
   const [events, setEvents] = useState([]);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('http://localhost:3001/api/events?page=1&limit=10', {
@@ -39,6 +41,7 @@ const EventList = () => {
           description={event.description}
           date={event.date}
           location={event.location}
+          onClick={() => navigate(`/events/${event.id}`)}
         />
       ))}
     </div>
