@@ -46,6 +46,7 @@ function App() {
   useEffect(() => {
     getToken();
     /* just for testing */
+    // TODO: remove this for production
     rememberToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzMwMTk5NTIxLCJleHAiOjE3MzM3OTk1MjF9.feS_3p40GSX0l4Un3_YpWtnyCYni0hyDBz2cZhOUz0M");
   }, []);
 

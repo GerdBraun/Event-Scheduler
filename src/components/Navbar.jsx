@@ -35,7 +35,7 @@ const Navbar = ({ token }) => {
                 <NavLink to="/login">login</NavLink>
               </li>
               <li>
-                <NavLink to="/signup">sign up (hidden when logged in)</NavLink>
+                <NavLink to="/signup">sign up</NavLink>
               </li>
             </>
           )}
