@@ -16,7 +16,6 @@ const LoginForm = ({ rememberToken }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("handleSubmit called");
 
     fetch("http://localhost:3001/api/auth/login", {
       method: "POST",
@@ -32,9 +31,7 @@ const LoginForm = ({ rememberToken }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
 
-        // TODO: error handling
         if (data.error) {
           alert(data.error);
           return;
@@ -42,7 +39,6 @@ const LoginForm = ({ rememberToken }) => {
 
         rememberToken(data.token);
         navigate("/");
-        //setEvent(data)
       })
       .catch((error) => console.error("Error fetching event details:", error));
   };
@@ -52,9 +48,7 @@ const LoginForm = ({ rememberToken }) => {
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Login now!</h1>
           <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+          Log in nunc et incipias addendo vel emendando eventus!
           </p>
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
