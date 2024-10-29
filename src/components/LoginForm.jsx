@@ -23,8 +23,8 @@ const LoginForm = ({ rememberToken }) => {
       },
       // body: '{\n  "email": "user@example.com",\n  "password": "password123"\n}',
       body: JSON.stringify({
-        email: e.target.email.value,
-        password: e.target.password.value,
+        email: formState.email,
+        password: formState.password,
       }),
     })
       .then((response) => response.json())
