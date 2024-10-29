@@ -1,9 +1,9 @@
 import Navbar from "./Navbar";
 
-const Header = () => {
+const Header = ({ token }) => {
   return (
     <header>
-      <Navbar />
+      <Navbar token={token} />
     </header>
   );
 };
