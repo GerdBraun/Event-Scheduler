@@ -42,7 +42,6 @@ const EventEditForm = ({token}) => {
       })
       .catch(error => console.error("Error updating event:", error));
   };
-
   return (
     <div className="p-6 bg-base-200 min-h-screen">
       <form onSubmit={handleSubmit} className="card bg-gray-300 text-black w-full max-w-xl mx-auto shadow-xl p-4">
