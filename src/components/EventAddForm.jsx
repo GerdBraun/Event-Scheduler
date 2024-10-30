@@ -1,23 +1,23 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const EventAddForm = ({ token }) => {
   const navigate = useNavigate();
   const [event, setEvent] = useState({
-    title: '',
-    description: '',
-    date: '',
-    location: '',
-    latitude: '',
-    longitude: '',
-    organizerId: ''
+    title: "",
+    description: "",
+    date: "",
+    location: "",
+    latitude: "",
+    longitude: "",
+    organizerId: "",
   });
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEvent(prevEvent => ({ ...prevEvent, [name]: value }));
-    setErrors(prevErrors => ({ ...prevErrors, [name]: '' })); // Clear error on change
+    setEvent((prevEvent) => ({ ...prevEvent, [name]: value }));
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: "" })); // Clear error on change
   };
 
   const validateForm = () => {
@@ -34,70 +34,113 @@ const EventAddForm = ({ token }) => {
     e.preventDefault();
     if (!validateForm()) return;
 
-    const { title, description, date, location, latitude, longitude, organizerId } = event;
+    const { title, description, date, location, latitude, longitude } = event;
 
-    fetch('http://localhost:3001/api/events', {
-      method: 'POST',
+    fetch("http://localhost:3001/api/events", {
+      method: "POST",
       headers: {
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ title, description, date, location, latitude, longitude, organizerId })
+      body: JSON.stringify({
+        title,
+        description,
+        date,
+        location,
+        latitude,
+        longitude,
+      }),
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         console.log("Event created:", data);
-        //navigate(`/events`);
+        navigate("/");
       })
-      .catch(error => console.error("Error creating event:", error));
+      .catch((error) => console.error("Error creating event:", error));
   };
 
   return (
     <div className="p-6 bg-base-200 min-h-screen">
-      <form onSubmit={handleSubmit} className="card bg-gray-300 text-black w-full max-w-xl mx-auto shadow-xl p-4">
+      <form
+        onSubmit={handleSubmit}
+        className="card bg-gray-300 text-black w-full max-w-xl mx-auto shadow-xl p-4"
+      >
         <h2 className="card-title">Add New Event</h2>
 
         <div className="form-control">
           <label className="label">Title</label>
-          <input className="input" name="title" value={event.title} onChange={handleChange} />
+          <input
+            className="input"
+            name="title"
+            value={event.title}
+            onChange={handleChange}
+          />
           {errors.title && <p className="text-red-500">{errors.title}</p>}
         </div>
 
         <div className="form-control">
           <label className="label">Description</label>
-          <textarea className="input" name="description" value={event.description} onChange={handleChange} />
-          {errors.description && <p className="text-red-500">{errors.description}</p>}
+          <textarea
+            className="input"
+            name="description"
+            value={event.description}
+            onChange={handleChange}
+          />
+          {errors.description && (
+            <p className="text-red-500">{errors.description}</p>
+          )}
         </div>
 
         <div className="form-control">
           <label className="label">Date</label>
-          <input className="input" name="date" type="datetime-local" value={event.date} onChange={handleChange} />
+          <input
+            className="input"
+            name="date"
+            type="datetime-local"
+            value={event.date}
+            onChange={handleChange}
+          />
           {errors.date && <p className="text-red-500">{errors.date}</p>}
         </div>
 
         <div className="form-control">
           <label className="label">Location</label>
-          <input className="input" name="location" value={event.location} onChange={handleChange} />
+          <input
+            className="input"
+            name="location"
+            value={event.location}
+            onChange={handleChange}
+          />
           {errors.location && <p className="text-red-500">{errors.location}</p>}
         </div>
 
         <div className="form-control">
           <label className="label">Latitude</label>
-          <input className="input" name="latitude" type="number" step="any" value={event.latitude} onChange={handleChange} />
+          <input
+            className="input"
+            name="latitude"
+            type="number"
+            step="any"
+            value={event.latitude}
+            onChange={handleChange}
+          />
         </div>
 
         <div className="form-control">
           <label className="label">Longitude</label>
-          <input className="input" name="longitude" type="number" step="any" value={event.longitude} onChange={handleChange} />
+          <input
+            className="input"
+            name="longitude"
+            type="number"
+            step="any"
+            value={event.longitude}
+            onChange={handleChange}
+          />
         </div>
-
-        <div className="form-control">
-          <label className="label">Organizer ID</label>
-          <input className="input" name="organizerId" type="number" value={event.organizerId} onChange={handleChange} />
-        </div>
-
-        <button className="btn mt-4" type="submit">Add Event</button>
+        <button className="btn mt-4" type="submit">
+          Add Event
+        </button>
       </form>
     </div>
   );
