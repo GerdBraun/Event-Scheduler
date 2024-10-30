@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import Card from './Card';
+import { useEffect, useState } from 'react';
+import Card from './card';
 import { useNavigate } from 'react-router-dom';
 
 const EventList = () => {
