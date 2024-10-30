@@ -71,7 +71,7 @@ const EventAddForm = ({ token }) => {
         <div className="form-control">
           <label className="label">Title</label>
           <input
-            className="input"
+            className="input input-bordered"
             name="title"
             value={event.title}
             onChange={handleChange}
@@ -82,7 +82,7 @@ const EventAddForm = ({ token }) => {
         <div className="form-control">
           <label className="label">Description</label>
           <textarea
-            className="input"
+            className="textarea textarea-bordered"
             name="description"
             value={event.description}
             onChange={handleChange}
@@ -95,7 +95,7 @@ const EventAddForm = ({ token }) => {
         <div className="form-control">
           <label className="label">Date</label>
           <input
-            className="input"
+            className="input input-bordered"
             name="date"
             type="datetime-local"
             value={event.date}
@@ -107,7 +107,7 @@ const EventAddForm = ({ token }) => {
         <div className="form-control">
           <label className="label">Location</label>
           <input
-            className="input"
+            className="input input-bordered"
             name="location"
             value={event.location}
             onChange={handleChange}
@@ -118,7 +118,7 @@ const EventAddForm = ({ token }) => {
         <div className="form-control">
           <label className="label">Latitude</label>
           <input
-            className="input"
+            className="input input-bordered"
             name="latitude"
             type="number"
             step="any"
@@ -130,7 +130,7 @@ const EventAddForm = ({ token }) => {
         <div className="form-control">
           <label className="label">Longitude</label>
           <input
-            className="input"
+            className="input input-bordered"
             name="longitude"
             type="number"
             step="any"
@@ -138,7 +138,7 @@ const EventAddForm = ({ token }) => {
             onChange={handleChange}
           />
         </div>
-        <button className="btn mt-4" type="submit">
+        <button className="btn btn-primary mt-4" type="submit">
           Add Event
         </button>
       </form>
