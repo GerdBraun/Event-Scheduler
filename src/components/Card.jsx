@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Card = ({ title, description, date, location, onClick }) => {
   return (
     <div className="card bg-gray-300 text-black w-86 shadow-xl">
