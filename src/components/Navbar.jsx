@@ -22,7 +22,7 @@ const Navbar = ({ token }) => {
           {isAuthenticated && (
             <>
               <li>
-                <NavLink to="/events/add">add event (protected)</NavLink>
+                <NavLink to="/events/add">add event</NavLink>
               </li>
               <li>
                 <NavLink to="/logout">logout</NavLink>
