@@ -45,7 +45,7 @@ const SignupForm = () => {
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Sign up now!</h1>
           <p className="py-6">
-          Subcribo nunc ut res addere vel recensere possim. Juste regire et gaudere!
+          Subcribo nunc ut res addere vel recensere possim. <br/>Juste regire et gaudere!
           </p>
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">

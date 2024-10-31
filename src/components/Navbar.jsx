@@ -24,6 +24,14 @@ const Navbar = ({ token }) => {
               <li>
                 <NavLink to="/events/add">add event</NavLink>
               </li>
+            </>
+          )}
+          <li>
+        <details>
+          <summary>user area</summary>
+          <ul className="bg-base-100 rounded-t-none p-2">
+          {isAuthenticated && (
+            <>
               <li>
                 <NavLink to="/logout">logout</NavLink>
               </li>
@@ -39,6 +47,9 @@ const Navbar = ({ token }) => {
               </li>
             </>
           )}
+          </ul>
+        </details>
+      </li>
         </ul>
       </div>
     </div>

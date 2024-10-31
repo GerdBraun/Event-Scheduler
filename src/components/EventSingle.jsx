@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-const EventSingle = () => {
+
+const EventSingle = ({ token }) => {
+  console.log(token);
+  
   const { id } = useParams();
   const [event, setEvent] = useState(null);
   const navigate = useNavigate();
@@ -23,7 +26,9 @@ const EventSingle = () => {
             Date: {new Date(event.date).toLocaleDateString()}
           </p>
           <p className="text-sm">Location: {event.location}</p>
-          <p className="text-sm">Latitude / Longitude: {event.latitude} / {event.longitude}</p>
+          <p className="text-sm">
+            Latitude / Longitude: {event.latitude} / {event.longitude}
+          </p>
           <a
             className="btn"
             target="_blank"
@@ -38,12 +43,14 @@ const EventSingle = () => {
           <p className="text-sm">
             Updated At: {new Date(event.updatedAt).toLocaleDateString()}
           </p>
-          <button
-            className="btn btn-primary mt-4"
-            onClick={() => navigate(`/events/edit/${id}`)}
-          >
-            Edit
-          </button>
+          {token && (
+            <button
+              className="btn btn-primary mt-4"
+              onClick={() => navigate(`/events/edit/${id}`)}
+            >
+              Edit
+            </button>
+          )}
         </div>
       </div>
     </div>
