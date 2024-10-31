@@ -2,17 +2,42 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const EventSingle = ({ token }) => {
-  console.log(token);
-  
   const { id } = useParams();
   const [event, setEvent] = useState(null);
   const navigate = useNavigate();
+
   useEffect(() => {
     fetch(`http://localhost:3001/api/events/${id}`)
       .then((response) => response.json())
       .then((data) => setEvent(data))
       .catch((error) => console.error("Error fetching event details:", error));
   }, [id]);
+
+  const handleDelete = () => {
+    if (!token) {
+      console.error("No token available for delete request");
+      return;
+    }
+    if (window.confirm("Are you sure you want to delete this event?")) {
+      fetch(`http://localhost:3001/api/events/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Accept": "application/json"
+        }
+      })
+        .then((response) => {
+          if (!response.ok) {
+            return response.json().then((errorData) => {
+              throw new Error(errorData.message || "Failed to delete event");
+            });
+          }
+          console.log("Event deleted successfully");
+          navigate("/events"); // Redirect to event list after deletion
+        })
+        .catch((error) => console.error("Error deleting event:", error.message));
+    }
+  };
 
   if (!event) return <p>Loading...</p>;
 
@@ -34,7 +59,7 @@ const EventSingle = ({ token }) => {
             target="_blank"
             href={`http://maps.google.com/maps?z=12&t=k&q=loc:${event.longitude}+${event.latitude}`}
           >
-            see it on google maps
+            See it on Google Maps
           </a>
           <p className="text-sm">Organizer ID: {event.organizerId}</p>
           <p className="text-sm">
@@ -44,16 +69,26 @@ const EventSingle = ({ token }) => {
             Updated At: {new Date(event.updatedAt).toLocaleDateString()}
           </p>
           {token && (
-            <button
-              className="btn btn-primary mt-4"
-              onClick={() => navigate(`/events/edit/${id}`)}
-            >
-              Edit
-            </button>
+            <div className="flex gap-4 mt-4 justify-center">
+              <button
+                className="btn btn-primary px-24 text-xl"
+                onClick={() => navigate(`/events/edit/${id}`)}
+              >
+                Edit
+              </button>
+              <button
+                className="btn btn-primary px-24 text-xl"
+                onClick={handleDelete}
+                aria-label="Delete event"
+              > Delete
+                {/*<i className="fa-solid fa-trash text-xl"></i>*/}
+              </button>
+            </div>
           )}
         </div>
       </div>
     </div>
   );
 };
+
 export default EventSingle;

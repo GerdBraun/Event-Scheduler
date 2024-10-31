@@ -6,11 +6,19 @@ const EventList = () => {
   const [events, setEvents] = useState([]);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  
+  // Retrieve token from localStorage
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
+    if (!token) {
+      setError("No authorization token available");
+      return;
+    }
     fetch('http://localhost:3001/api/events?page=1&limit=10', {
       headers: {
-        'accept': 'application/json'
+        'accept': 'application/json',
+        'Authorization': `Bearer ${token}`
       }
     })
       .then(response => response.json())
@@ -26,7 +34,7 @@ const EventList = () => {
         console.error("Error fetching data:", error);
         setError("Failed to fetch data");
       });
-  }, []);
+  }, [token]);
 
   if (error) {
     return <div>{error}</div>;
@@ -35,14 +43,15 @@ const EventList = () => {
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mx-4">
       {events.map(event => (
-        <Card
-          key={event.id}
-          title={event.title}
-          description={event.description}
-          date={event.date}
-          location={event.location}
-          onClick={() => navigate(`/events/${event.id}`)}
-        />
+        <div key={event.id} className="relative">
+          <Card
+            title={event.title}
+            description={event.description}
+            date={event.date}
+            location={event.location}
+            onClick={() => navigate(`/events/${event.id}`)}
+          />
+        </div>
       ))}
     </div>
   );
