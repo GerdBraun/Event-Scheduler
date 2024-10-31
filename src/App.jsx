@@ -54,13 +54,13 @@ function App() {
           index
           element={
             <>
-              <Hero />
+              <Hero token={token} />
               <EventList />
             </>
           }
         />
         <Route path="/events" element={<EventList />} />
-        <Route path="/events/:id" element={<EventSingle />} />
+        <Route path="/events/:id" element={<EventSingle token={token} />} />
         {/* must be protected */}
         <Route path="/events/add" element={<ProtectedLayout token={token} />}>
           <Route index element={<EventAddForm token={token}/>} />
