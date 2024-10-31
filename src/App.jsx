@@ -63,7 +63,7 @@ function App() {
         <Route path="/events/:id" element={<EventSingle />} />
         {/* must be protected */}
         <Route path="/events/add" element={<ProtectedLayout token={token} />}>
-          <Route index element={<EventAddForm  token={token}/>} />
+          <Route index element={<EventAddForm token={token}/>} />
         </Route>
         {/* must be protected */}
         <Route path="/events/edit/:id" element={<ProtectedLayout token={token} />}>
