@@ -42,10 +42,10 @@ const EventSingle = ({ token }) => {
   if (!event) return <p>Loading...</p>;
 
   return (
-    <div className="p-6 bg-base-200 min-h-screen">
+    <div className="p-4 bg-gray-700 min-h-screen">
       <div className="card bg-gray-300 text-black w-full max-w-xl mx-auto shadow-xl">
         <div className="card-body">
-          <h2 className="card-title">{event.title}</h2>
+          <h2 className="text-2xl text-center text-blue-500">{event.title}</h2>
           <p>{event.description}</p>
           <p className="text-sm">
             Date: {new Date(event.date).toLocaleDateString()}
@@ -71,13 +71,19 @@ const EventSingle = ({ token }) => {
           {token && (
             <div className="flex gap-4 mt-4 justify-center">
               <button
-                className="btn btn-primary px-24 text-xl"
+                className="btn btn-primary px-14 text-xl"
+                onClick={() => navigate(`/events`)}
+              >
+                back
+              </button>
+              <button
+                className="btn btn-primary px-14 text-xl"
                 onClick={() => navigate(`/events/edit/${id}`)}
               >
                 Edit
               </button>
               <button
-                className="btn btn-primary px-24 text-xl"
+                className="btn btn-primary px-12 text-xl"
                 onClick={handleDelete}
                 aria-label="Delete event"
               > Delete

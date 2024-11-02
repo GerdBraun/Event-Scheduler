@@ -60,12 +60,12 @@ const EventEditForm = ({ token }) => {
       .catch((error) => console.error("Error updating event:", error));
   };
   return (
-    <div className="p-6 bg-base-200 min-h-screen">
+    <div className="p-4 bg-gray-700 min-h-screen">
       <form
         onSubmit={handleSubmit}
         className="card bg-gray-300 text-black w-full max-w-xl mx-auto shadow-xl p-4"
       >
-        <h2 className="card-title">Edit Event</h2>
+        <h2 className="text-2xl text-center text-blue-600">Edit Event</h2>
         <div className="form-control">
           <label className="label">Title</label>
           <input
@@ -82,6 +82,7 @@ const EventEditForm = ({ token }) => {
             className="textarea textarea-bordered"
             name="description"
             value={event.description}
+            rows="4" 
             onChange={handleChange}
             required
           />
@@ -131,7 +132,7 @@ const EventEditForm = ({ token }) => {
             onChange={handleChange}
           />
         </div>
-        <button className="btn btn-primary mt-4" type="submit">
+        <button className="btn btn-primary mt-4 text-xl" type="submit">
           Save Changes
         </button>
       </form>

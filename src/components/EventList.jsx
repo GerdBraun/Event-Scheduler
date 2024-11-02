@@ -41,14 +41,15 @@ const EventList = () => {
   }
 
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mx-4">
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mx-4 mb-4">
       {events.map(event => (
         <div key={event.id} className="relative">
           <Card
             title={event.title}
-            description={event.description}
+            //description={event.description}
             date={event.date}
             location={event.location}
+            image={event.image || 'https://via.assets.so/img.jpg?w=600&h=400'} 
             onClick={() => navigate(`/events/${event.id}`)}
           />
         </div>
