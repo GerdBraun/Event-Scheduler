@@ -81,7 +81,7 @@ const LoginForm = ({ rememberToken }) => {
             <button className="btn btn-primary text-xl mb-4">Log In</button>
           </div>
           <div className="flex text-center">
-            <p className=" text-white">Don't have an account?
+            <p className=" text-white">Don&apos;t have an account?
             <a href="#" onClick={handleSignUpClick} className="label-text-alt p-2 link link-hover text-blue-500 text-xl">
                 Sign Up
               </a>
