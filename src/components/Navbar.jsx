@@ -8,14 +8,14 @@ const Navbar = ({ token }) => {
   }, [token]);
 
   return (
-    <div className="navbar bg-base-100">
-      <div className="flex-1">
-        <NavLink className="btn btn-ghost text-xl" to="/">
+    <div className="navbar bg-gray-800 text-white justify-between">
+      <div className="">
+        <NavLink className="btn btn-ghost text-2xl" to="/">
           Event Scheduler
         </NavLink>
       </div>
-      <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
+      <div className="">
+        <ul className="menu menu-horizontal px-1 text-xl">
           <li>
             <NavLink to="/">home</NavLink>
           </li>
@@ -26,10 +26,7 @@ const Navbar = ({ token }) => {
               </li>
             </>
           )}
-          <li>
-        <details>
-          <summary>user area</summary>
-          <ul className="bg-base-100 rounded-t-none p-2">
+  
           {isAuthenticated && (
             <>
               <li>
@@ -48,9 +45,6 @@ const Navbar = ({ token }) => {
             </>
           )}
           </ul>
-        </details>
-      </li>
-        </ul>
       </div>
     </div>
   );

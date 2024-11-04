@@ -1,13 +1,19 @@
-const Card = ({ title, description, date, location, onClick }) => {
+const Card = ({ title, description, date, location, image, onClick }) => {
   return (
-    <div className="card bg-gray-300 text-black w-86 shadow-xl">
+    <div className="card bg-base-100 image-full w-full shadow-xl hover:scale-105 hover:shadow-2xl hover:shadow-primary transition-all duration-300 ease-out">
+      <figure>
+        <img
+          src={image}
+          alt={title} 
+        />
+      </figure>
       <div className="card-body">
-        <h2 className="card-title">{title}</h2>
+        <h2 className="text-2xl text-center text-blue-500">{title}</h2>
         <p>{description}</p>
-        <p className="text-sm">{new Date(date).toLocaleDateString()}</p>
-        <p className="text-sm">{location}</p>
+        <h3>{new Date(date).toLocaleDateString()}</h3>
+        <h4>{location}</h4>
         <div className="card-actions justify-end">
-          <button className="btn" onClick={onClick}>View Details</button>
+          <button className="btn btn-primary" onClick={onClick}>View Details</button>
         </div>
       </div>
     </div>

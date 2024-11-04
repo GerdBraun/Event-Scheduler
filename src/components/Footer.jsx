@@ -1,13 +1,16 @@
 const Footer = () => {
   return (
-    <footer className="footer footer-center bg-base-200 text-base-content rounded p-10 mt-4">
-  <nav className="grid grid-flow-col gap-4">
-    <a className="link link-hover">About us</a>
-    <a className="link link-hover">Contact</a>
-    <a className="link link-hover">Jobs</a>
-    <a className="link link-hover">Press kit</a>
+    <footer className="footer footer-center bg-gray-800 text-white p-10">
+      <div className="flex justify-between items-center w-full">
+  <nav className="flex-1">
+    <div className="flex gap-4">
+    <a className="link link-hover text-xl">About us</a>
+    <a className="link link-hover text-xl">Contact</a>
+    <a className="link link-hover text-xl">Jobs</a>
+    <a className="link link-hover text-xl">Press kit</a>
+    </div>
   </nav>
-  <nav>
+  <nav className="flex-1 flex justify-end">
     <div className="grid grid-flow-col gap-4">
       <a>
         <svg
@@ -44,6 +47,7 @@ const Footer = () => {
       </a>
     </div>
   </nav>
+  </div>
   <aside>
     <p>Copyright © {new Date().getFullYear()} - All right reserved by ACME Industries Ltd</p>
   </aside>

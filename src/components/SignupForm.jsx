@@ -40,19 +40,13 @@ const SignupForm = () => {
       .catch((error) => console.error("Error fetching event details:", error));
   };
   return (
-    <div className="hero bg-base-200 min-h-screen">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Sign up now!</h1>
-          <p className="py-6">
-          Subcribo nunc ut res addere vel recensere possim. <br/>Juste regire et gaudere!
-          </p>
-        </div>
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+    <div className="hero bg-gray-200 min-h-screen flex items-center justify-center">
+      <div className="card bg-gray-700 w-full max-w-md md:max-w-lg lg:max-w-2xl p-8 shadow-2xl rounded-lg">
           <form className="card-body" onSubmit={(e) => handleSubmit(e)}>
+          <h2 className="text-2xl text-blue-500 font-bold mb-6 text-center">Sign Up</h2>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Name</span>
+                <span className="text-white">Name</span>
               </label>
               <input
                 name="name"
@@ -66,12 +60,12 @@ const SignupForm = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="text-white">Email</span>
               </label>
               <input
                 name="email"
                 type="email"
-                placeholder="email"
+                placeholder="Email"
                 className="input input-bordered"
                 required
                 onChange={handleChange}
@@ -80,7 +74,7 @@ const SignupForm = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Password</span>
+                <span className="text-white">Password</span>
               </label>
               <input
                 name="password"
@@ -93,12 +87,11 @@ const SignupForm = () => {
               />
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Sign up</button>
+              <button className="btn btn-primary text-xl">Sign up</button>
             </div>
           </form>
         </div>
       </div>
-    </div>
   );
 };
 

@@ -16,7 +16,7 @@ const Hero = ({ token }) => {
           {token ? (
             <h2 className="text-3xl">Welcome back!</h2>
           ) : (
-            <Link to="/login" className="btn btn-primary ">
+            <Link to="/login" className="btn btn-primary text-xl">
               Get Started
             </Link>
           )}

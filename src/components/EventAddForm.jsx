@@ -61,12 +61,12 @@ const EventAddForm = ({ token }) => {
   };
 
   return (
-    <div className="p-6 bg-base-200 min-h-screen">
+    <div className="p-4 bg-gray-700 min-h-screen">
       <form
         onSubmit={handleSubmit}
         className="card bg-gray-300 text-black w-full max-w-xl mx-auto shadow-xl p-4"
       >
-        <h2 className="card-title">Add New Event</h2>
+        <h2 className="text-2xl text-center text-blue-600">Add New Event</h2>
 
         <div className="form-control">
           <label className="label">Title</label>
@@ -85,6 +85,7 @@ const EventAddForm = ({ token }) => {
             className="textarea textarea-bordered"
             name="description"
             value={event.description}
+            rows= "4"
             onChange={handleChange}
           />
           {errors.description && (
