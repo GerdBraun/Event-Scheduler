@@ -80,7 +80,6 @@ const EventEditForm = ({ token }) => {
             required
           />
         </div>
-        <h2 className="text-2xl text-center text-blue-600">Edit Event</h2>
         <div className="form-control">
           <label className="label">Image</label>
           <input
