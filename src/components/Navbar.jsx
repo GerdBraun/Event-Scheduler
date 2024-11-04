@@ -8,13 +8,13 @@ const Navbar = ({ token }) => {
   }, [token]);
 
   return (
-    <div className="navbar bg-gray-800 text-white">
-      <div className="flex-1">
+    <div className="navbar bg-gray-800 text-white justify-between">
+      <div className="">
         <NavLink className="btn btn-ghost text-2xl" to="/">
           Event Scheduler
         </NavLink>
       </div>
-      <div className="flex-1">
+      <div className="">
         <ul className="menu menu-horizontal px-1 text-xl">
           <li>
             <NavLink to="/">home</NavLink>

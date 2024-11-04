@@ -11,10 +11,10 @@ const EventList = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    if (!token) {
-      setError("No authorization token available");
-      return;
-    }
+    // if (!token) {
+    //   setError("No authorization token available");
+    //   return;
+    // }
     fetch('http://localhost:3001/api/events?page=1&limit=10', {
       headers: {
         'accept': 'application/json',
@@ -25,6 +25,7 @@ const EventList = () => {
       .then(data => {
         if (data.results && Array.isArray(data.results)) {
           setEvents(data.results);
+          console.log(events)
         } else {
           console.error("Unexpected data format:", data);
           setError("Unexpected data format");
@@ -36,12 +37,12 @@ const EventList = () => {
       });
   }, [token]);
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+  // if (error) {
+  //   return <div>{error}</div>;
+  // }
 
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mx-4 mb-4">
+    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mx-4 my-4">
       {events.map(event => (
         <div key={event.id} className="relative">
           <Card
@@ -49,7 +50,7 @@ const EventList = () => {
             //description={event.description}
             date={event.date}
             location={event.location}
-            image={event.image || 'https://via.assets.so/img.jpg?w=600&h=400'} 
+            image={event.image || 'https://i.postimg.cc/y86GJN9F/schedule.png'} 
             onClick={() => navigate(`/events/${event.id}`)}
           />
         </div>

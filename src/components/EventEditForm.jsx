@@ -6,6 +6,7 @@ const EventEditForm = ({ token }) => {
   const navigate = useNavigate();
   const [event, setEvent] = useState({
     title: "",
+    image: "",
     description: "",
     date: "",
     location: "",
@@ -19,6 +20,7 @@ const EventEditForm = ({ token }) => {
       .then((data) => {
         setEvent({
           title: data.title,
+          image: data.image,
           description: data.description,
           date: data.date,
           location: data.location,
@@ -35,7 +37,8 @@ const EventEditForm = ({ token }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { title, description, date, location, latitude, longitude } = event;
+    const { title, image, description, date, location, latitude, longitude } =
+      event;
     fetch(`http://localhost:3001/api/events/${id}`, {
       method: "PUT",
       headers: {
@@ -45,6 +48,7 @@ const EventEditForm = ({ token }) => {
       },
       body: JSON.stringify({
         title,
+        image,
         description,
         date,
         location,
@@ -76,13 +80,24 @@ const EventEditForm = ({ token }) => {
             required
           />
         </div>
+        <h2 className="text-2xl text-center text-blue-600">Edit Event</h2>
+        <div className="form-control">
+          <label className="label">Image</label>
+          <input
+            className="input input-bordered"
+            name="image"
+            value={event.image}
+            onChange={handleChange}
+            required
+          />
+        </div>
         <div className="form-control">
           <label className="label">Description</label>
           <textarea
             className="textarea textarea-bordered"
             name="description"
             value={event.description}
-            rows="4" 
+            rows="4"
             onChange={handleChange}
             required
           />

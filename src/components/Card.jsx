@@ -1,6 +1,6 @@
 const Card = ({ title, description, date, location, image, onClick }) => {
   return (
-    <div className="card bg-base-100 image-full w-96 shadow-xl hover:scale-105 hover:shadow-2xl hover:shadow-primary transition-all duration-300 ease-out">
+    <div className="card bg-base-100 image-full w-full shadow-xl hover:scale-105 hover:shadow-2xl hover:shadow-primary transition-all duration-300 ease-out">
       <figure>
         <img
           src={image}

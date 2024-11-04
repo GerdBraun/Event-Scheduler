@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 const EventSingle = ({ token }) => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
+  const [organizer, setOrganizer] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -12,6 +13,16 @@ const EventSingle = ({ token }) => {
       .then((data) => setEvent(data))
       .catch((error) => console.error("Error fetching event details:", error));
   }, [id]);
+
+  useEffect(() => {
+    if (!event) return;
+    fetch(`http://localhost:3001/api/users/${event.organizerId}`)
+      .then((response) => response.json())
+      .then((data) => setOrganizer(data))
+      .catch((error) =>
+        console.error("Error fetching organizer details:", error)
+      );
+  }, [event]);
 
   const handleDelete = () => {
     if (!token) {
@@ -22,9 +33,9 @@ const EventSingle = ({ token }) => {
       fetch(`http://localhost:3001/api/events/${id}`, {
         method: "DELETE",
         headers: {
-          "Authorization": `Bearer ${token}`,
-          "Accept": "application/json"
-        }
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
       })
         .then((response) => {
           if (!response.ok) {
@@ -35,7 +46,9 @@ const EventSingle = ({ token }) => {
           console.log("Event deleted successfully");
           navigate("/events"); // Redirect to event list after deletion
         })
-        .catch((error) => console.error("Error deleting event:", error.message));
+        .catch((error) =>
+          console.error("Error deleting event:", error.message)
+        );
     }
   };
 
@@ -46,6 +59,7 @@ const EventSingle = ({ token }) => {
       <div className="card bg-gray-300 text-black w-full max-w-xl mx-auto shadow-xl">
         <div className="card-body">
           <h2 className="text-2xl text-center text-blue-500">{event.title}</h2>
+          <p>image: {event.image}</p>
           <p>{event.description}</p>
           <p className="text-sm">
             Date: {new Date(event.date).toLocaleDateString()}
@@ -61,7 +75,14 @@ const EventSingle = ({ token }) => {
           >
             See it on Google Maps
           </a>
-          <p className="text-sm">Organizer ID: {event.organizerId}</p>
+          <p className="text-sm">
+            Organizer ID: {event.organizerId}
+          </p>
+          {organizer && (
+            <p className="text-sm">
+              Organizer: <br/>{organizer.name}<br/><a className="hover:text-blue-500" href={`mailto:${organizer.email}`}>{organizer.email}</a>
+            </p>
+          )}
           <p className="text-sm">
             Created At: {new Date(event.createdAt).toLocaleDateString()}
           </p>
@@ -86,7 +107,9 @@ const EventSingle = ({ token }) => {
                 className="btn btn-primary px-12 text-xl"
                 onClick={handleDelete}
                 aria-label="Delete event"
-              > Delete
+              >
+                {" "}
+                Delete
                 {/*<i className="fa-solid fa-trash text-xl"></i>*/}
               </button>
             </div>
