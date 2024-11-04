@@ -5,6 +5,7 @@ const EventAddForm = ({ token }) => {
   const navigate = useNavigate();
   const [event, setEvent] = useState({
     title: "",
+    image: "",
     description: "",
     date: "",
     location: "",
@@ -34,7 +35,8 @@ const EventAddForm = ({ token }) => {
     e.preventDefault();
     if (!validateForm()) return;
 
-    const { title, description, date, location, latitude, longitude } = event;
+    const { title, image, description, date, location, latitude, longitude } =
+      event;
 
     fetch("http://localhost:3001/api/events", {
       method: "POST",
@@ -45,6 +47,7 @@ const EventAddForm = ({ token }) => {
       },
       body: JSON.stringify({
         title,
+        image,
         description,
         date,
         location,
@@ -80,12 +83,23 @@ const EventAddForm = ({ token }) => {
         </div>
 
         <div className="form-control">
+          <label className="label">Image</label>
+          <input
+            className="input input-bordered"
+            name="image"
+            value={event.image}
+            onChange={handleChange}
+          />
+          {errors.image && <p className="text-red-500">{errors.image}</p>}
+        </div>
+
+        <div className="form-control">
           <label className="label">Description</label>
           <textarea
             className="textarea textarea-bordered"
             name="description"
             value={event.description}
-            rows= "4"
+            rows="4"
             onChange={handleChange}
           />
           {errors.description && (

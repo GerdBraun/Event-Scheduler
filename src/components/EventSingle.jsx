@@ -55,7 +55,7 @@ const EventSingle = ({ token }) => {
   if (!event) return <p>Loading...</p>;
 
   return (
-    <div className="p-4 bg-gray-700 min-h-screen">
+    <div className="p-4 bg-gray-700 min-h-screen bg-cover" style={{backgroundImage:`url(${event.image || 'https://i.postimg.cc/y86GJN9F/schedule.png'})`}}>
       <div className="card bg-gray-300 text-black w-full max-w-xl mx-auto shadow-xl">
         <div className="card-body">
           <h2 className="text-2xl text-center text-blue-500">{event.title}</h2>
